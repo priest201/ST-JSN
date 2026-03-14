@@ -840,6 +840,7 @@ section {
 /* Platform colors for modal */
 .sml-spotify { background: #1DB954; }
 .sml-apple { background: #FC3C44; }
+.sml-audiomack { background: #FFA200; }
 .sml-boomplay { background: #29d2e4; }
 .sml-ytmusic { background: #FF0000; }
 /* Modal footer */
@@ -975,10 +976,10 @@ section {
 }
 .platform-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
   margin-top: 3.5rem;
-  max-width: 560px;
+  max-width: 700px;
 }
 .platform-card {
   display: flex;
@@ -1016,6 +1017,8 @@ section {
 .pc-spotify .platform-card-icon svg { fill: #fff; }
 .pc-apple .platform-card-icon { background: #FC3C44; }
 .pc-apple .platform-card-icon svg { fill: #fff; }
+.pc-audiomack .platform-card-icon { background: #FFA200; }
+.pc-audiomack .platform-card-icon svg { fill: #fff; }
 .pc-boomplay .platform-card-icon { background: #29d2e4; }
 .pc-boomplay .platform-card-icon svg { fill: #fff; }
 .pc-ytmusic .platform-card-icon { background: #FF0000; }
@@ -1692,6 +1695,7 @@ section {
       <a href="#" class="platform-link">Apple Music</a>
       <a href="#" class="platform-link">YouTube Music</a>
       <a href="#" class="platform-link">Boomplay</a>
+      <a href="#" class="platform-link">Audiomack</a>
     </div>
   </div>
 </section>
@@ -1740,6 +1744,16 @@ section {
         </div>
         <div class="platform-card-text">
           <span class="platform-card-name">Boomplay</span>
+          <span class="platform-card-action">Listen now</span>
+        </div>
+      </a>
+
+      <a href="#" class="platform-card pc-audiomack reveal reveal-delay-4" target="_blank">
+        <div class="platform-card-icon">
+          <svg viewBox="0 0 24 24"><path d="M4.47 13.03a1.5 1.5 0 11-2.121 0 1.5 1.5 0 012.121 0zm4.53-.53a1.5 1.5 0 100 3 1.5 1.5 0 000-3zm4.5-3a1.5 1.5 0 100 3 1.5 1.5 0 000-3zm5.03.53a1.5 1.5 0 11-2.121 0 1.5 1.5 0 012.121 0zM3.47 8.03a1.5 1.5 0 11-2.121 0 1.5 1.5 0 012.121 0zm5.03-.53a1.5 1.5 0 100 3 1.5 1.5 0 000-3zm5.5-3a1.5 1.5 0 100 3 1.5 1.5 0 000-3zm5.03.53a1.5 1.5 0 11-2.121 0 1.5 1.5 0 012.121 0z"/></svg>
+        </div>
+        <div class="platform-card-text">
+          <span class="platform-card-name">Audiomack</span>
           <span class="platform-card-action">Listen now</span>
         </div>
       </a>
@@ -1946,6 +1960,14 @@ section {
           <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="#fff" stroke-width="2"/><polygon points="10,8 16,12 10,16" fill="#fff"/></svg>
         </div>
         <span class="stream-modal-link-name">Boomplay</span>
+        <span class="stream-modal-link-arrow">→</span>
+      </a>
+
+      <a href="#" class="stream-modal-link" target="_blank">
+        <div class="stream-modal-link-icon sml-audiomack">
+          <svg viewBox="0 0 24 24"><path d="M4.47 13.03a1.5 1.5 0 11-2.121 0 1.5 1.5 0 012.121 0zm4.53-.53a1.5 1.5 0 100 3 1.5 1.5 0 000-3zm4.5-3a1.5 1.5 0 100 3 1.5 1.5 0 000-3zm5.03.53a1.5 1.5 0 11-2.121 0 1.5 1.5 0 012.121 0zM3.47 8.03a1.5 1.5 0 11-2.121 0 1.5 1.5 0 012.121 0zm5.03-.53a1.5 1.5 0 100 3 1.5 1.5 0 000-3zm5.5-3a1.5 1.5 0 100 3 1.5 1.5 0 000-3zm5.03.53a1.5 1.5 0 11-2.121 0 1.5 1.5 0 012.121 0z"/></svg>
+        </div>
+        <span class="stream-modal-link-name">Audiomack</span>
         <span class="stream-modal-link-arrow">→</span>
       </a>
 
