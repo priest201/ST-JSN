@@ -840,14 +840,8 @@ section {
 /* Platform colors for modal */
 .sml-spotify { background: #1DB954; }
 .sml-apple { background: #FC3C44; }
-.sml-audiomack { background: #FFA200; }
 .sml-boomplay { background: #29d2e4; }
-.sml-youtube { background: #FF0000; }
 .sml-ytmusic { background: #FF0000; }
-.sml-tidal { background: #000; }
-.sml-soundcloud { background: #FF5500; }
-.sml-deezer { background: #A238FF; }
-.sml-amazon { background: #25D1DA; }
 /* Modal footer */
 .stream-modal-footer {
   padding: 0 2rem 1.8rem;
@@ -981,9 +975,10 @@ section {
 }
 .platform-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
   margin-top: 3.5rem;
+  max-width: 560px;
 }
 .platform-card {
   display: flex;
@@ -1021,22 +1016,10 @@ section {
 .pc-spotify .platform-card-icon svg { fill: #fff; }
 .pc-apple .platform-card-icon { background: #FC3C44; }
 .pc-apple .platform-card-icon svg { fill: #fff; }
-.pc-audiomack .platform-card-icon { background: #FFA200; }
-.pc-audiomack .platform-card-icon svg { fill: #fff; }
 .pc-boomplay .platform-card-icon { background: #29d2e4; }
 .pc-boomplay .platform-card-icon svg { fill: #fff; }
-.pc-youtube .platform-card-icon { background: #FF0000; }
-.pc-youtube .platform-card-icon svg { fill: #fff; }
 .pc-ytmusic .platform-card-icon { background: #FF0000; }
 .pc-ytmusic .platform-card-icon svg { fill: #fff; }
-.pc-tidal .platform-card-icon { background: #000; }
-.pc-tidal .platform-card-icon svg { fill: #fff; }
-.pc-deezer .platform-card-icon { background: #A238FF; }
-.pc-deezer .platform-card-icon svg { fill: #fff; }
-.pc-soundcloud .platform-card-icon { background: #FF5500; }
-.pc-soundcloud .platform-card-icon svg { fill: #fff; }
-.pc-amazon .platform-card-icon { background: #25D1DA; }
-.pc-amazon .platform-card-icon svg { fill: #fff; }
 .platform-card-text {
   display: flex;
   flex-direction: column;
@@ -1707,9 +1690,8 @@ section {
     <div class="featured-platforms reveal reveal-delay-3">
       <a href="#" class="platform-link">Spotify</a>
       <a href="#" class="platform-link">Apple Music</a>
-      <a href="#" class="platform-link">Audiomack</a>
+      <a href="#" class="platform-link">YouTube Music</a>
       <a href="#" class="platform-link">Boomplay</a>
-      <a href="#" class="platform-link">YouTube</a>
     </div>
   </div>
 </section>
@@ -1732,43 +1714,13 @@ section {
         </div>
       </a>
 
-      <a href="#" class="platform-card pc-apple reveal reveal-delay-1" target="_blank">
+      <a href="#" class="platform-card pc-apple reveal reveal-delay-2" target="_blank">
         <div class="platform-card-icon">
           <svg viewBox="0 0 24 24"><path d="M23.994 6.124a9.23 9.23 0 00-.24-2.19c-.317-1.31-1.062-2.31-2.18-3.043A5.022 5.022 0 0019.7.204C18.82.044 17.94 0 17.06 0H6.94C6.06 0 5.18.044 4.3.204A5.022 5.022 0 002.426.89C1.308 1.624.563 2.624.246 3.934a9.23 9.23 0 00-.24 2.19C0 6.584 0 7.044 0 7.504v8.992c0 .46 0 .92.006 1.38a9.23 9.23 0 00.24 2.19c.317 1.31 1.062 2.31 2.18 3.043a5.022 5.022 0 001.874.686c.88.16 1.76.204 2.64.204h10.12c.88 0 1.76-.044 2.64-.204a5.022 5.022 0 001.874-.686c1.118-.734 1.863-1.734 2.18-3.043a9.23 9.23 0 00.24-2.19c.006-.46.006-.92.006-1.38V7.504c0-.46 0-.92-.006-1.38zM17.73 12.096l-5.274 3.04c-.37.214-.756.322-1.148.322-.264 0-.53-.052-.8-.162a1.634 1.634 0 01-.986-1.57V7.296c0-.7.38-1.236.986-1.57.606-.334 1.24-.306 1.948.16l5.274 3.04c.63.362.948.854.948 1.486 0 .632-.318 1.322-.948 1.684z"/></svg>
         </div>
         <div class="platform-card-text">
           <span class="platform-card-name">Apple Music</span>
           <span class="platform-card-action">Listen now</span>
-        </div>
-      </a>
-
-      <a href="#" class="platform-card pc-audiomack reveal reveal-delay-2" target="_blank">
-        <div class="platform-card-icon">
-          <svg viewBox="0 0 24 24"><path d="M4.47 13.03a1.5 1.5 0 11-2.121 0 1.5 1.5 0 012.121 0zm4.53-.53a1.5 1.5 0 100 3 1.5 1.5 0 000-3zm4.5-3a1.5 1.5 0 100 3 1.5 1.5 0 000-3zm5.03.53a1.5 1.5 0 11-2.121 0 1.5 1.5 0 012.121 0zM3.47 8.03a1.5 1.5 0 11-2.121 0 1.5 1.5 0 012.121 0zm5.03-.53a1.5 1.5 0 100 3 1.5 1.5 0 000-3zm5.5-3a1.5 1.5 0 100 3 1.5 1.5 0 000-3zm5.03.53a1.5 1.5 0 11-2.121 0 1.5 1.5 0 012.121 0z"/></svg>
-        </div>
-        <div class="platform-card-text">
-          <span class="platform-card-name">Audiomack</span>
-          <span class="platform-card-action">Listen now</span>
-        </div>
-      </a>
-
-      <a href="#" class="platform-card pc-boomplay reveal reveal-delay-2" target="_blank">
-        <div class="platform-card-icon">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="#fff" stroke-width="2"/><polygon points="10,8 16,12 10,16" fill="#fff"/></svg>
-        </div>
-        <div class="platform-card-text">
-          <span class="platform-card-name">Boomplay</span>
-          <span class="platform-card-action">Listen now</span>
-        </div>
-      </a>
-
-      <a href="#" class="platform-card pc-youtube reveal reveal-delay-3" target="_blank">
-        <div class="platform-card-icon">
-          <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-        </div>
-        <div class="platform-card-text">
-          <span class="platform-card-name">YouTube</span>
-          <span class="platform-card-action">Watch now</span>
         </div>
       </a>
 
@@ -1782,42 +1734,12 @@ section {
         </div>
       </a>
 
-      <a href="#" class="platform-card pc-tidal reveal reveal-delay-4" target="_blank">
+      <a href="#" class="platform-card pc-boomplay reveal reveal-delay-4" target="_blank">
         <div class="platform-card-icon">
-          <svg viewBox="0 0 24 24"><path d="M12.012 3.992L8.008 7.996 12.012 12l4.004-4.004zM4.004 7.996L0 12l4.004 4.004L8.008 12zm15.992 0L15.992 12l4.004 4.004L24 12zm-7.984 7.984l-4.004 4.004 4.004 4.004 4.004-4.004z"/></svg>
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="#fff" stroke-width="2"/><polygon points="10,8 16,12 10,16" fill="#fff"/></svg>
         </div>
         <div class="platform-card-text">
-          <span class="platform-card-name">Tidal</span>
-          <span class="platform-card-action">Listen now</span>
-        </div>
-      </a>
-
-      <a href="#" class="platform-card pc-soundcloud reveal reveal-delay-4" target="_blank">
-        <div class="platform-card-icon">
-          <svg viewBox="0 0 24 24"><path d="M1.175 12.225c-.051 0-.094.046-.101.1l-.233 2.154.233 2.105c.007.058.05.098.101.098.05 0 .09-.04.099-.098l.255-2.105-.27-2.154c-.009-.06-.05-.1-.1-.1m-.899.828c-.06 0-.091.038-.1.1L0 14.479l.176 1.32c.009.06.04.098.1.098.058 0 .091-.038.1-.098l.21-1.32-.21-1.326c-.009-.06-.04-.1-.1-.1m1.818-1.154c-.07 0-.12.06-.12.12l-.204 2.46.204 2.388c0 .06.05.12.12.12.068 0 .12-.06.12-.12l.234-2.388-.234-2.46c0-.06-.05-.12-.12-.12m.779-.18c-.08 0-.131.06-.131.14l-.19 2.64.19 2.418c.009.08.06.131.131.131.08 0 .131-.05.14-.131l.209-2.418-.21-2.64c-.009-.08-.06-.14-.14-.14m.762-.11c-.089 0-.15.07-.15.15l-.18 2.75.18 2.418c0 .08.06.149.15.149.09 0 .15-.07.15-.15l.2-2.417-.2-2.75c0-.08-.06-.15-.15-.15m.77-.07c-.1 0-.16.08-.17.16l-.16 2.82.16 2.417c.01.09.07.16.17.16.09 0 .16-.07.16-.16l.18-2.417-.18-2.82c-.01-.09-.07-.16-.16-.16m.97-.14c-.1 0-.18.09-.18.18l-.15 2.96.15 2.398c0 .1.08.18.18.18.1 0 .18-.08.18-.18l.17-2.398-.17-2.96c0-.09-.08-.18-.18-.18m.789.08c-.11 0-.19.09-.19.19l-.14 2.88.14 2.368c0 .1.08.19.19.19.1 0 .19-.09.19-.19l.15-2.368-.15-2.88c0-.1-.09-.19-.19-.19m.79-.04c-.12 0-.2.1-.21.2l-.12 2.92.12 2.348c.01.11.09.2.21.2.11 0 .19-.09.2-.2l.13-2.348-.13-2.92c-.01-.1-.09-.2-.2-.2m.79-.03c-.12 0-.21.1-.21.21l-.11 2.95.11 2.328c0 .12.09.21.21.21.12 0 .21-.09.22-.21l.12-2.328-.12-2.95c-.01-.11-.1-.21-.22-.21m.79-.02c-.13 0-.22.1-.22.22l-.1 2.97.1 2.308c0 .12.09.22.22.22.12 0 .22-.1.23-.22l.11-2.308-.11-2.97c-.01-.12-.1-.22-.23-.22m2.7-.17c-.189 0-.339.16-.349.33l-.07 3.14.07 2.27c.01.18.16.33.35.33.18 0 .33-.15.34-.33l.08-2.27-.08-3.14c-.01-.17-.16-.33-.34-.33m.79.13c-.2 0-.35.16-.36.35l-.06 3.01.06 2.24c.01.19.16.35.36.35.19 0 .35-.16.36-.35l.07-2.24-.07-3.01c-.01-.19-.16-.35-.36-.35m4.04-1.81c-.23 0-.42.07-.6.18a4.83 4.83 0 00-4.73-3.82c-.49 0-.98.08-1.43.23-.18.06-.23.13-.23.26v7.6c0 .13.1.24.23.26h6.76c1.32 0 2.39-1.07 2.39-2.39 0-1.32-1.07-2.39-2.39-2.39"/></svg>
-        </div>
-        <div class="platform-card-text">
-          <span class="platform-card-name">SoundCloud</span>
-          <span class="platform-card-action">Listen now</span>
-        </div>
-      </a>
-
-      <a href="#" class="platform-card pc-deezer reveal reveal-delay-4" target="_blank">
-        <div class="platform-card-icon">
-          <svg viewBox="0 0 24 24"><path d="M18.81 4.16v3.03H24V4.16h-5.19zM6.27 8.38v3.027h5.189V8.38H6.27zm12.54 0v3.027H24V8.38h-5.19zM6.27 12.594v3.027h5.189v-3.027H6.27zm6.27 0v3.027h5.19v-3.027h-5.19zm6.27 0v3.027H24v-3.027h-5.19zM0 16.81v3.029h5.19V16.81H0zm6.27 0v3.029h5.189V16.81H6.27zm6.27 0v3.029h5.19V16.81h-5.19zm6.27 0v3.029H24V16.81h-5.19z"/></svg>
-        </div>
-        <div class="platform-card-text">
-          <span class="platform-card-name">Deezer</span>
-          <span class="platform-card-action">Listen now</span>
-        </div>
-      </a>
-
-      <a href="#" class="platform-card pc-amazon reveal reveal-delay-4" target="_blank">
-        <div class="platform-card-icon">
-          <svg viewBox="0 0 24 24"><path d="M12 0C5.376 0 0 5.376 0 12s5.376 12 12 12 12-5.376 12-12S18.624 0 12 0zm0 3.6c4.638 0 8.4 3.762 8.4 8.4 0 4.638-3.762 8.4-8.4 8.4-4.638 0-8.4-3.762-8.4-8.4 0-4.638 3.762-8.4 8.4-8.4zM9.6 8.4v7.2L16.8 12 9.6 8.4z"/></svg>
-        </div>
-        <div class="platform-card-text">
-          <span class="platform-card-name">Amazon Music</span>
+          <span class="platform-card-name">Boomplay</span>
           <span class="platform-card-action">Listen now</span>
         </div>
       </a>
@@ -2012,10 +1934,10 @@ section {
       </a>
 
       <a href="#" class="stream-modal-link" target="_blank">
-        <div class="stream-modal-link-icon sml-audiomack">
-          <svg viewBox="0 0 24 24"><path d="M4.47 13.03a1.5 1.5 0 11-2.121 0 1.5 1.5 0 012.121 0zm4.53-.53a1.5 1.5 0 100 3 1.5 1.5 0 000-3zm4.5-3a1.5 1.5 0 100 3 1.5 1.5 0 000-3zm5.03.53a1.5 1.5 0 11-2.121 0 1.5 1.5 0 012.121 0zM3.47 8.03a1.5 1.5 0 11-2.121 0 1.5 1.5 0 012.121 0zm5.03-.53a1.5 1.5 0 100 3 1.5 1.5 0 000-3zm5.5-3a1.5 1.5 0 100 3 1.5 1.5 0 000-3zm5.03.53a1.5 1.5 0 11-2.121 0 1.5 1.5 0 012.121 0z"/></svg>
+        <div class="stream-modal-link-icon sml-ytmusic">
+          <svg viewBox="0 0 24 24"><path d="M12 0C5.376 0 0 5.376 0 12s5.376 12 12 12 12-5.376 12-12S18.624 0 12 0zm0 19.104c-3.924 0-7.104-3.18-7.104-7.104S8.076 4.896 12 4.896s7.104 3.18 7.104 7.104-3.18 7.104-7.104 7.104zm0-13.332c-3.432 0-6.228 2.796-6.228 6.228S8.568 18.228 12 18.228 18.228 15.432 18.228 12 15.432 5.772 12 5.772zM9.684 15.54V8.46L15.816 12l-6.132 3.54z"/></svg>
         </div>
-        <span class="stream-modal-link-name">Audiomack</span>
+        <span class="stream-modal-link-name">YouTube Music</span>
         <span class="stream-modal-link-arrow">→</span>
       </a>
 
@@ -2024,46 +1946,6 @@ section {
           <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="#fff" stroke-width="2"/><polygon points="10,8 16,12 10,16" fill="#fff"/></svg>
         </div>
         <span class="stream-modal-link-name">Boomplay</span>
-        <span class="stream-modal-link-arrow">→</span>
-      </a>
-
-      <a href="#" class="stream-modal-link" target="_blank">
-        <div class="stream-modal-link-icon sml-youtube">
-          <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-        </div>
-        <span class="stream-modal-link-name">YouTube Music</span>
-        <span class="stream-modal-link-arrow">→</span>
-      </a>
-
-      <a href="#" class="stream-modal-link" target="_blank">
-        <div class="stream-modal-link-icon sml-tidal">
-          <svg viewBox="0 0 24 24"><path d="M12.012 3.992L8.008 7.996 12.012 12l4.004-4.004zM4.004 7.996L0 12l4.004 4.004L8.008 12zm15.992 0L15.992 12l4.004 4.004L24 12zm-7.984 7.984l-4.004 4.004 4.004 4.004 4.004-4.004z"/></svg>
-        </div>
-        <span class="stream-modal-link-name">Tidal</span>
-        <span class="stream-modal-link-arrow">→</span>
-      </a>
-
-      <a href="#" class="stream-modal-link" target="_blank">
-        <div class="stream-modal-link-icon sml-soundcloud">
-          <svg viewBox="0 0 24 24"><path d="M1.175 12.225c-.051 0-.094.046-.101.1l-.233 2.154.233 2.105c.007.058.05.098.101.098.05 0 .09-.04.099-.098l.255-2.105-.27-2.154c-.009-.06-.05-.1-.1-.1m-.899.828c-.06 0-.091.038-.1.1L0 14.479l.176 1.32c.009.06.04.098.1.098.058 0 .091-.038.1-.098l.21-1.32-.21-1.326c-.009-.06-.04-.1-.1-.1m1.818-1.154c-.07 0-.12.06-.12.12l-.204 2.46.204 2.388c0 .06.05.12.12.12.068 0 .12-.06.12-.12l.234-2.388-.234-2.46c0-.06-.05-.12-.12-.12m.779-.18c-.08 0-.131.06-.131.14l-.19 2.64.19 2.418c.009.08.06.131.131.131.08 0 .131-.05.14-.131l.209-2.418-.21-2.64c-.009-.08-.06-.14-.14-.14m.762-.11c-.089 0-.15.07-.15.15l-.18 2.75.18 2.418c0 .08.06.149.15.149.09 0 .15-.07.15-.15l.2-2.417-.2-2.75c0-.08-.06-.15-.15-.15m.77-.07c-.1 0-.16.08-.17.16l-.16 2.82.16 2.417c.01.09.07.16.17.16.09 0 .16-.07.16-.16l.18-2.417-.18-2.82c-.01-.09-.07-.16-.16-.16m.97-.14c-.1 0-.18.09-.18.18l-.15 2.96.15 2.398c0 .1.08.18.18.18.1 0 .18-.08.18-.18l.17-2.398-.17-2.96c0-.09-.08-.18-.18-.18m.789.08c-.11 0-.19.09-.19.19l-.14 2.88.14 2.368c0 .1.08.19.19.19.1 0 .19-.09.19-.19l.15-2.368-.15-2.88c0-.1-.09-.19-.19-.19m.79-.04c-.12 0-.2.1-.21.2l-.12 2.92.12 2.348c.01.11.09.2.21.2.11 0 .19-.09.2-.2l.13-2.348-.13-2.92c-.01-.1-.09-.2-.2-.2m.79-.03c-.12 0-.21.1-.21.21l-.11 2.95.11 2.328c0 .12.09.21.21.21.12 0 .21-.09.22-.21l.12-2.328-.12-2.95c-.01-.11-.1-.21-.22-.21m.79-.02c-.13 0-.22.1-.22.22l-.1 2.97.1 2.308c0 .12.09.22.22.22.12 0 .22-.1.23-.22l.11-2.308-.11-2.97c-.01-.12-.1-.22-.23-.22m2.7-.17c-.189 0-.339.16-.349.33l-.07 3.14.07 2.27c.01.18.16.33.35.33.18 0 .33-.15.34-.33l.08-2.27-.08-3.14c-.01-.17-.16-.33-.34-.33m.79.13c-.2 0-.35.16-.36.35l-.06 3.01.06 2.24c.01.19.16.35.36.35.19 0 .35-.16.36-.35l.07-2.24-.07-3.01c-.01-.19-.16-.35-.36-.35m4.04-1.81c-.23 0-.42.07-.6.18a4.83 4.83 0 00-4.73-3.82c-.49 0-.98.08-1.43.23-.18.06-.23.13-.23.26v7.6c0 .13.1.24.23.26h6.76c1.32 0 2.39-1.07 2.39-2.39 0-1.32-1.07-2.39-2.39-2.39"/></svg>
-        </div>
-        <span class="stream-modal-link-name">SoundCloud</span>
-        <span class="stream-modal-link-arrow">→</span>
-      </a>
-
-      <a href="#" class="stream-modal-link" target="_blank">
-        <div class="stream-modal-link-icon sml-deezer">
-          <svg viewBox="0 0 24 24"><path d="M18.81 4.16v3.03H24V4.16h-5.19zM6.27 8.38v3.027h5.189V8.38H6.27zm12.54 0v3.027H24V8.38h-5.19zM6.27 12.594v3.027h5.189v-3.027H6.27zm6.27 0v3.027h5.19v-3.027h-5.19zm6.27 0v3.027H24v-3.027h-5.19zM0 16.81v3.029h5.19V16.81H0zm6.27 0v3.029h5.189V16.81H6.27zm6.27 0v3.029h5.19V16.81h-5.19zm6.27 0v3.029H24V16.81h-5.19z"/></svg>
-        </div>
-        <span class="stream-modal-link-name">Deezer</span>
-        <span class="stream-modal-link-arrow">→</span>
-      </a>
-
-      <a href="#" class="stream-modal-link" target="_blank">
-        <div class="stream-modal-link-icon sml-amazon">
-          <svg viewBox="0 0 24 24"><path d="M12 0C5.376 0 0 5.376 0 12s5.376 12 12 12 12-5.376 12-12S18.624 0 12 0zm0 3.6c4.638 0 8.4 3.762 8.4 8.4 0 4.638-3.762 8.4-8.4 8.4-4.638 0-8.4-3.762-8.4-8.4 0-4.638 3.762-8.4 8.4-8.4zM9.6 8.4v7.2L16.8 12 9.6 8.4z"/></svg>
-        </div>
-        <span class="stream-modal-link-name">Amazon Music</span>
         <span class="stream-modal-link-arrow">→</span>
       </a>
 
