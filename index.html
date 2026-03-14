@@ -682,6 +682,203 @@ section {
   font-weight: 300;
 }
 
+/* ─── STREAMING MODAL ─── */
+.stream-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: rgba(26, 26, 24, 0.75);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.35s ease, visibility 0.35s ease;
+}
+.stream-modal-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+.stream-modal {
+  background: var(--white);
+  width: 100%;
+  max-width: 460px;
+  position: relative;
+  transform: translateY(24px) scale(0.97);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 40px 100px rgba(0,0,0,0.25);
+}
+.stream-modal-overlay.open .stream-modal {
+  transform: translateY(0) scale(1);
+}
+.stream-modal-header {
+  padding: 2rem 2rem 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 1.2rem;
+}
+.stream-modal-art {
+  width: 72px;
+  height: 72px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.stream-modal-meta {
+  flex: 1;
+  min-width: 0;
+}
+.stream-modal-type {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.stream-modal-title {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: var(--charcoal);
+  line-height: 1.2;
+  margin-top: 0.2rem;
+}
+.stream-modal-year {
+  font-size: 0.75rem;
+  color: var(--muted);
+  font-weight: 300;
+  margin-top: 0.15rem;
+}
+.stream-modal-close {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.2rem;
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: var(--off-white);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+.stream-modal-close:hover {
+  background: var(--cream);
+}
+.stream-modal-close svg {
+  width: 14px;
+  height: 14px;
+  stroke: var(--charcoal);
+  stroke-width: 2;
+  fill: none;
+}
+.stream-modal-divider {
+  height: 1px;
+  background: var(--cream);
+  margin: 1.5rem 2rem 0;
+}
+.stream-modal-label {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 1.2rem 2rem 0.6rem;
+}
+.stream-modal-list {
+  padding: 0 1rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+.stream-modal-link {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  text-decoration: none;
+  color: var(--charcoal);
+  border-radius: 8px;
+  transition: all 0.25s ease;
+}
+.stream-modal-link:hover {
+  background: var(--off-white);
+}
+.stream-modal-link-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.stream-modal-link-icon svg {
+  width: 17px;
+  height: 17px;
+  fill: #fff;
+}
+.stream-modal-link-name {
+  flex: 1;
+  font-size: 0.88rem;
+  font-weight: 500;
+}
+.stream-modal-link-arrow {
+  font-size: 0.85rem;
+  color: var(--subtle);
+  transition: all 0.25s ease;
+}
+.stream-modal-link:hover .stream-modal-link-arrow {
+  color: var(--gold);
+  transform: translateX(3px);
+}
+/* Platform colors for modal */
+.sml-spotify { background: #1DB954; }
+.sml-apple { background: #FC3C44; }
+.sml-audiomack { background: #FFA200; }
+.sml-boomplay { background: #29d2e4; }
+.sml-youtube { background: #FF0000; }
+.sml-ytmusic { background: #FF0000; }
+.sml-tidal { background: #000; }
+.sml-soundcloud { background: #FF5500; }
+.sml-deezer { background: #A238FF; }
+.sml-amazon { background: #25D1DA; }
+/* Modal footer */
+.stream-modal-footer {
+  padding: 0 2rem 1.8rem;
+  text-align: center;
+}
+.stream-modal-footer span {
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--subtle);
+}
+
+@media (max-width: 520px) {
+  .stream-modal {
+    max-width: 100%;
+  }
+  .stream-modal-header {
+    padding: 1.5rem 1.5rem 0;
+  }
+  .stream-modal-divider {
+    margin: 1.2rem 1.5rem 0;
+  }
+  .stream-modal-label {
+    padding: 1rem 1.5rem 0.4rem;
+  }
+  .stream-modal-list {
+    padding: 0 0.6rem 1rem;
+  }
+}
+
 /* ─── FEATURED EMBED ─── */
 .featured {
   background: var(--charcoal);
@@ -1442,7 +1639,7 @@ section {
     <div class="section-tag reveal">Discography</div>
     <h2 class="section-heading reveal reveal-delay-1">Selected <em>Works</em></h2>
     <div class="music-grid">
-      <div class="music-card reveal reveal-delay-1">
+      <div class="music-card reveal reveal-delay-1" data-track="Divine Frequency" data-type="Single" data-year="2025" data-art="art-1">
         <div class="music-card-art">
           <div class="music-card-art-inner art-1">
             <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21" fill="#C4A265"/></svg>
@@ -1454,7 +1651,7 @@ section {
           <div class="music-card-year">2025</div>
         </div>
       </div>
-      <div class="music-card reveal reveal-delay-2">
+      <div class="music-card reveal reveal-delay-2" data-track="Golden Hour" data-type="EP" data-year="2024" data-art="art-2">
         <div class="music-card-art">
           <div class="music-card-art-inner art-2">
             <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21" fill="#1A1A18"/></svg>
@@ -1466,7 +1663,7 @@ section {
           <div class="music-card-year">2024</div>
         </div>
       </div>
-      <div class="music-card reveal reveal-delay-3">
+      <div class="music-card reveal reveal-delay-3" data-track="Night Psalm" data-type="Single" data-year="2024" data-art="art-3">
         <div class="music-card-art">
           <div class="music-card-art-inner art-3">
             <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21" fill="#C4A265"/></svg>
@@ -1478,7 +1675,7 @@ section {
           <div class="music-card-year">2024</div>
         </div>
       </div>
-      <div class="music-card reveal reveal-delay-4">
+      <div class="music-card reveal reveal-delay-4" data-track="Sanctified" data-type="Album" data-year="2023" data-art="art-4">
         <div class="music-card-art">
           <div class="music-card-art-inner art-4">
             <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21" fill="#C4A265"/></svg>
@@ -1780,6 +1977,103 @@ section {
   </div>
 </section>
 
+<!-- STREAMING MODAL -->
+<div class="stream-modal-overlay" id="streamModal">
+  <div class="stream-modal">
+    <button class="stream-modal-close" id="streamModalClose" aria-label="Close">
+      <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div class="stream-modal-header">
+      <div class="stream-modal-art" id="modalArt"></div>
+      <div class="stream-modal-meta">
+        <div class="stream-modal-type" id="modalType"></div>
+        <div class="stream-modal-title" id="modalTitle"></div>
+        <div class="stream-modal-year" id="modalYear"></div>
+      </div>
+    </div>
+    <div class="stream-modal-divider"></div>
+    <div class="stream-modal-label">Choose your platform</div>
+    <div class="stream-modal-list">
+
+      <a href="#" class="stream-modal-link" target="_blank">
+        <div class="stream-modal-link-icon sml-spotify">
+          <svg viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+        </div>
+        <span class="stream-modal-link-name">Spotify</span>
+        <span class="stream-modal-link-arrow">→</span>
+      </a>
+
+      <a href="#" class="stream-modal-link" target="_blank">
+        <div class="stream-modal-link-icon sml-apple">
+          <svg viewBox="0 0 24 24"><path d="M23.994 6.124a9.23 9.23 0 00-.24-2.19c-.317-1.31-1.062-2.31-2.18-3.043A5.022 5.022 0 0019.7.204C18.82.044 17.94 0 17.06 0H6.94C6.06 0 5.18.044 4.3.204A5.022 5.022 0 002.426.89C1.308 1.624.563 2.624.246 3.934a9.23 9.23 0 00-.24 2.19C0 6.584 0 7.044 0 7.504v8.992c0 .46 0 .92.006 1.38a9.23 9.23 0 00.24 2.19c.317 1.31 1.062 2.31 2.18 3.043a5.022 5.022 0 001.874.686c.88.16 1.76.204 2.64.204h10.12c.88 0 1.76-.044 2.64-.204a5.022 5.022 0 001.874-.686c1.118-.734 1.863-1.734 2.18-3.043a9.23 9.23 0 00.24-2.19c.006-.46.006-.92.006-1.38V7.504c0-.46 0-.92-.006-1.38zM17.73 12.096l-5.274 3.04c-.37.214-.756.322-1.148.322-.264 0-.53-.052-.8-.162a1.634 1.634 0 01-.986-1.57V7.296c0-.7.38-1.236.986-1.57.606-.334 1.24-.306 1.948.16l5.274 3.04c.63.362.948.854.948 1.486 0 .632-.318 1.322-.948 1.684z"/></svg>
+        </div>
+        <span class="stream-modal-link-name">Apple Music</span>
+        <span class="stream-modal-link-arrow">→</span>
+      </a>
+
+      <a href="#" class="stream-modal-link" target="_blank">
+        <div class="stream-modal-link-icon sml-audiomack">
+          <svg viewBox="0 0 24 24"><path d="M4.47 13.03a1.5 1.5 0 11-2.121 0 1.5 1.5 0 012.121 0zm4.53-.53a1.5 1.5 0 100 3 1.5 1.5 0 000-3zm4.5-3a1.5 1.5 0 100 3 1.5 1.5 0 000-3zm5.03.53a1.5 1.5 0 11-2.121 0 1.5 1.5 0 012.121 0zM3.47 8.03a1.5 1.5 0 11-2.121 0 1.5 1.5 0 012.121 0zm5.03-.53a1.5 1.5 0 100 3 1.5 1.5 0 000-3zm5.5-3a1.5 1.5 0 100 3 1.5 1.5 0 000-3zm5.03.53a1.5 1.5 0 11-2.121 0 1.5 1.5 0 012.121 0z"/></svg>
+        </div>
+        <span class="stream-modal-link-name">Audiomack</span>
+        <span class="stream-modal-link-arrow">→</span>
+      </a>
+
+      <a href="#" class="stream-modal-link" target="_blank">
+        <div class="stream-modal-link-icon sml-boomplay">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="#fff" stroke-width="2"/><polygon points="10,8 16,12 10,16" fill="#fff"/></svg>
+        </div>
+        <span class="stream-modal-link-name">Boomplay</span>
+        <span class="stream-modal-link-arrow">→</span>
+      </a>
+
+      <a href="#" class="stream-modal-link" target="_blank">
+        <div class="stream-modal-link-icon sml-youtube">
+          <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        </div>
+        <span class="stream-modal-link-name">YouTube Music</span>
+        <span class="stream-modal-link-arrow">→</span>
+      </a>
+
+      <a href="#" class="stream-modal-link" target="_blank">
+        <div class="stream-modal-link-icon sml-tidal">
+          <svg viewBox="0 0 24 24"><path d="M12.012 3.992L8.008 7.996 12.012 12l4.004-4.004zM4.004 7.996L0 12l4.004 4.004L8.008 12zm15.992 0L15.992 12l4.004 4.004L24 12zm-7.984 7.984l-4.004 4.004 4.004 4.004 4.004-4.004z"/></svg>
+        </div>
+        <span class="stream-modal-link-name">Tidal</span>
+        <span class="stream-modal-link-arrow">→</span>
+      </a>
+
+      <a href="#" class="stream-modal-link" target="_blank">
+        <div class="stream-modal-link-icon sml-soundcloud">
+          <svg viewBox="0 0 24 24"><path d="M1.175 12.225c-.051 0-.094.046-.101.1l-.233 2.154.233 2.105c.007.058.05.098.101.098.05 0 .09-.04.099-.098l.255-2.105-.27-2.154c-.009-.06-.05-.1-.1-.1m-.899.828c-.06 0-.091.038-.1.1L0 14.479l.176 1.32c.009.06.04.098.1.098.058 0 .091-.038.1-.098l.21-1.32-.21-1.326c-.009-.06-.04-.1-.1-.1m1.818-1.154c-.07 0-.12.06-.12.12l-.204 2.46.204 2.388c0 .06.05.12.12.12.068 0 .12-.06.12-.12l.234-2.388-.234-2.46c0-.06-.05-.12-.12-.12m.779-.18c-.08 0-.131.06-.131.14l-.19 2.64.19 2.418c.009.08.06.131.131.131.08 0 .131-.05.14-.131l.209-2.418-.21-2.64c-.009-.08-.06-.14-.14-.14m.762-.11c-.089 0-.15.07-.15.15l-.18 2.75.18 2.418c0 .08.06.149.15.149.09 0 .15-.07.15-.15l.2-2.417-.2-2.75c0-.08-.06-.15-.15-.15m.77-.07c-.1 0-.16.08-.17.16l-.16 2.82.16 2.417c.01.09.07.16.17.16.09 0 .16-.07.16-.16l.18-2.417-.18-2.82c-.01-.09-.07-.16-.16-.16m.97-.14c-.1 0-.18.09-.18.18l-.15 2.96.15 2.398c0 .1.08.18.18.18.1 0 .18-.08.18-.18l.17-2.398-.17-2.96c0-.09-.08-.18-.18-.18m.789.08c-.11 0-.19.09-.19.19l-.14 2.88.14 2.368c0 .1.08.19.19.19.1 0 .19-.09.19-.19l.15-2.368-.15-2.88c0-.1-.09-.19-.19-.19m.79-.04c-.12 0-.2.1-.21.2l-.12 2.92.12 2.348c.01.11.09.2.21.2.11 0 .19-.09.2-.2l.13-2.348-.13-2.92c-.01-.1-.09-.2-.2-.2m.79-.03c-.12 0-.21.1-.21.21l-.11 2.95.11 2.328c0 .12.09.21.21.21.12 0 .21-.09.22-.21l.12-2.328-.12-2.95c-.01-.11-.1-.21-.22-.21m.79-.02c-.13 0-.22.1-.22.22l-.1 2.97.1 2.308c0 .12.09.22.22.22.12 0 .22-.1.23-.22l.11-2.308-.11-2.97c-.01-.12-.1-.22-.23-.22m2.7-.17c-.189 0-.339.16-.349.33l-.07 3.14.07 2.27c.01.18.16.33.35.33.18 0 .33-.15.34-.33l.08-2.27-.08-3.14c-.01-.17-.16-.33-.34-.33m.79.13c-.2 0-.35.16-.36.35l-.06 3.01.06 2.24c.01.19.16.35.36.35.19 0 .35-.16.36-.35l.07-2.24-.07-3.01c-.01-.19-.16-.35-.36-.35m4.04-1.81c-.23 0-.42.07-.6.18a4.83 4.83 0 00-4.73-3.82c-.49 0-.98.08-1.43.23-.18.06-.23.13-.23.26v7.6c0 .13.1.24.23.26h6.76c1.32 0 2.39-1.07 2.39-2.39 0-1.32-1.07-2.39-2.39-2.39"/></svg>
+        </div>
+        <span class="stream-modal-link-name">SoundCloud</span>
+        <span class="stream-modal-link-arrow">→</span>
+      </a>
+
+      <a href="#" class="stream-modal-link" target="_blank">
+        <div class="stream-modal-link-icon sml-deezer">
+          <svg viewBox="0 0 24 24"><path d="M18.81 4.16v3.03H24V4.16h-5.19zM6.27 8.38v3.027h5.189V8.38H6.27zm12.54 0v3.027H24V8.38h-5.19zM6.27 12.594v3.027h5.189v-3.027H6.27zm6.27 0v3.027h5.19v-3.027h-5.19zm6.27 0v3.027H24v-3.027h-5.19zM0 16.81v3.029h5.19V16.81H0zm6.27 0v3.029h5.189V16.81H6.27zm6.27 0v3.029h5.19V16.81h-5.19zm6.27 0v3.029H24V16.81h-5.19z"/></svg>
+        </div>
+        <span class="stream-modal-link-name">Deezer</span>
+        <span class="stream-modal-link-arrow">→</span>
+      </a>
+
+      <a href="#" class="stream-modal-link" target="_blank">
+        <div class="stream-modal-link-icon sml-amazon">
+          <svg viewBox="0 0 24 24"><path d="M12 0C5.376 0 0 5.376 0 12s5.376 12 12 12 12-5.376 12-12S18.624 0 12 0zm0 3.6c4.638 0 8.4 3.762 8.4 8.4 0 4.638-3.762 8.4-8.4 8.4-4.638 0-8.4-3.762-8.4-8.4 0-4.638 3.762-8.4 8.4-8.4zM9.6 8.4v7.2L16.8 12 9.6 8.4z"/></svg>
+        </div>
+        <span class="stream-modal-link-name">Amazon Music</span>
+        <span class="stream-modal-link-arrow">→</span>
+      </a>
+
+    </div>
+    <div class="stream-modal-footer">
+      <span>ST JSN &nbsp;·&nbsp; Stream Everywhere</span>
+    </div>
+  </div>
+</div>
+
 <!-- FOOTER -->
 <footer class="footer">
   <div class="footer-inner">
@@ -1865,6 +2159,57 @@ const revealObserver = new IntersectionObserver((entries) => {
 });
 
 reveals.forEach(el => revealObserver.observe(el));
+
+// Streaming Modal
+const streamModal = document.getElementById('streamModal');
+const streamModalClose = document.getElementById('streamModalClose');
+const modalArt = document.getElementById('modalArt');
+const modalType = document.getElementById('modalType');
+const modalTitle = document.getElementById('modalTitle');
+const modalYear = document.getElementById('modalYear');
+
+// Art gradient map matching the card classes
+const artGradients = {
+  'art-1': 'linear-gradient(135deg, #1a1a18, #2a2825, #3d3830)',
+  'art-2': 'linear-gradient(135deg, #A8874D, #8B7340, #D4B87A)',
+  'art-3': 'linear-gradient(135deg, #2c2c28, #A8874D, #1a1a18)',
+  'art-4': 'linear-gradient(135deg, #0d0d0c, #1a1a18, #2e2e2a)'
+};
+
+document.querySelectorAll('.music-card').forEach(card => {
+  card.addEventListener('click', () => {
+    const track = card.dataset.track;
+    const type = card.dataset.type;
+    const year = card.dataset.year;
+    const art = card.dataset.art;
+
+    modalTitle.textContent = track;
+    modalType.textContent = type;
+    modalYear.textContent = year;
+    modalArt.style.background = artGradients[art] || artGradients['art-1'];
+    modalArt.style.borderRadius = '8px';
+
+    streamModal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  });
+});
+
+function closeStreamModal() {
+  streamModal.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+streamModalClose.addEventListener('click', closeStreamModal);
+
+streamModal.addEventListener('click', (e) => {
+  if (e.target === streamModal) closeStreamModal();
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && streamModal.classList.contains('open')) {
+    closeStreamModal();
+  }
+});
 
 // Smooth scroll for nav links
 document.querySelectorAll('a[href^="#"]').forEach(link => {
