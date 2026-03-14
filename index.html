@@ -1,0 +1,1906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ST JSN — Musician · Producer · Visionary</title>
+<meta name="description" content="ST JSN — Nigerian musician and producer crafting the sound of a generation. Explore music, book shows, and connect.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Outfit:wght@200;300;400;500;600;700&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --white: #FAFAF8;
+  --off-white: #F3F1ED;
+  --cream: #EAE6DE;
+  --gold: #C4A265;
+  --gold-light: #D4B87A;
+  --gold-dark: #A8874D;
+  --charcoal: #1A1A18;
+  --graphite: #2E2E2A;
+  --muted: #8A8780;
+  --subtle: #B5B1AA;
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Outfit', 'Helvetica Neue', sans-serif;
+  --font-mono: 'DM Mono', 'Courier New', monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--white);
+  color: var(--charcoal);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+::selection {
+  background: var(--gold);
+  color: var(--white);
+}
+
+/* ─── LOADING CURTAIN ─── */
+.loader {
+  position: fixed;
+  inset: 0;
+  background: var(--charcoal);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+.loader.done {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.loader-text {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 6vw, 4.5rem);
+  color: var(--gold);
+  font-weight: 300;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  animation: loaderPulse 1.2s ease-in-out infinite alternate;
+}
+@keyframes loaderPulse {
+  from { opacity: 0.3; }
+  to   { opacity: 1; }
+}
+
+/* ─── NAVIGATION ─── */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 1.5rem 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.5s ease;
+  background: transparent;
+}
+.nav.scrolled {
+  background: rgba(250, 250, 248, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 1rem 3rem;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.04);
+}
+.nav-logo {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: var(--white);
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color 0.4s ease;
+}
+.nav.scrolled .nav-logo {
+  color: var(--charcoal);
+}
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+  align-items: center;
+}
+.nav-links a {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.75);
+  text-decoration: none;
+  transition: color 0.3s ease;
+  position: relative;
+}
+.nav.scrolled .nav-links a {
+  color: var(--muted);
+}
+.nav-links a:hover {
+  color: var(--gold);
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--gold);
+  transition: width 0.3s ease;
+}
+.nav-links a:hover::after {
+  width: 100%;
+}
+.nav-cta {
+  font-size: 0.7rem !important;
+  letter-spacing: 0.2em !important;
+  padding: 0.65rem 1.6rem;
+  border: 1px solid var(--gold);
+  color: var(--gold) !important;
+  transition: all 0.3s ease !important;
+}
+.nav-cta:hover {
+  background: var(--gold);
+  color: var(--white) !important;
+}
+.nav-cta::after { display: none !important; }
+
+/* Hamburger */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  z-index: 1001;
+  background: none;
+  border: none;
+  padding: 6px;
+}
+.hamburger span {
+  width: 24px;
+  height: 1.5px;
+  background: var(--white);
+  transition: all 0.3s ease;
+}
+.nav.scrolled .hamburger span {
+  background: var(--charcoal);
+}
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 4px);
+}
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -4px);
+}
+
+/* ─── HERO ─── */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  overflow: hidden;
+  background: var(--charcoal);
+}
+.hero-image {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+.hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  display: block;
+}
+/* ── Layered overlays for cinematic depth ── */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background:
+    linear-gradient(180deg, rgba(26,26,24,0.3) 0%, rgba(26,26,24,0.05) 35%, rgba(26,26,24,0.5) 70%, rgba(26,26,24,0.92) 100%);
+}
+.hero-overlay-side {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background:
+    linear-gradient(90deg, rgba(26,26,24,0.6) 0%, transparent 50%);
+}
+.hero-grain {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-size: 128px 128px;
+  pointer-events: none;
+}
+.hero-vignette {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  box-shadow: inset 0 0 150px rgba(0,0,0,0.4);
+  pointer-events: none;
+}
+/* ── Hero content — bottom-left editorial layout ── */
+.hero-content {
+  position: relative;
+  z-index: 5;
+  padding: clamp(2rem, 5vw, 5rem) clamp(2rem, 5vw, 6rem);
+  padding-bottom: clamp(3rem, 6vw, 5rem);
+  max-width: 750px;
+}
+.hero-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.4em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.8s ease forwards 1.2s;
+}
+.hero-eyebrow::before {
+  content: '';
+  width: 30px;
+  height: 1px;
+  background: var(--gold);
+}
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(4.5rem, 13vw, 11rem);
+  font-weight: 300;
+  color: var(--white);
+  letter-spacing: 0.04em;
+  line-height: 0.9;
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translateY(40px);
+  animation: fadeUp 1s ease forwards 1.5s;
+}
+.hero-title em {
+  font-style: italic;
+  font-weight: 300;
+  color: var(--gold);
+}
+.hero-subtitle {
+  font-family: var(--font-body);
+  font-size: clamp(0.85rem, 1.4vw, 1.05rem);
+  font-weight: 300;
+  color: rgba(255,255,255,0.55);
+  letter-spacing: 0.12em;
+  margin-top: 1.4rem;
+  max-width: 440px;
+  line-height: 1.6;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.8s ease forwards 1.8s;
+}
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 2.2rem;
+  flex-wrap: wrap;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.8s ease forwards 2.1s;
+}
+.hero-btn-primary {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 500;
+  padding: 0.9rem 2.2rem;
+  background: var(--gold);
+  color: var(--charcoal);
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  transition: all 0.4s ease;
+}
+.hero-btn-primary:hover {
+  background: var(--gold-light);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(196, 162, 101, 0.25);
+}
+.hero-btn-primary svg {
+  width: 14px;
+  height: 14px;
+  fill: var(--charcoal);
+}
+.hero-btn-ghost {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 500;
+  padding: 0.9rem 2rem;
+  background: transparent;
+  color: var(--white);
+  border: 1px solid rgba(255,255,255,0.25);
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.4s ease;
+}
+.hero-btn-ghost:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+/* ── Equalizer bars in the corner ── */
+.hero-eq {
+  position: absolute;
+  bottom: clamp(2rem, 5vw, 4rem);
+  right: clamp(2rem, 5vw, 5rem);
+  z-index: 5;
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 2.4s;
+}
+.eq-bar {
+  width: 3px;
+  background: var(--gold);
+  border-radius: 2px 2px 0 0;
+  opacity: 0.6;
+}
+.eq-bar:nth-child(1) { height: 14px; animation: eqBounce 1.1s ease-in-out infinite; }
+.eq-bar:nth-child(2) { height: 24px; animation: eqBounce 0.8s ease-in-out infinite 0.1s; }
+.eq-bar:nth-child(3) { height: 18px; animation: eqBounce 1.0s ease-in-out infinite 0.2s; }
+.eq-bar:nth-child(4) { height: 30px; animation: eqBounce 0.7s ease-in-out infinite 0.05s; }
+.eq-bar:nth-child(5) { height: 12px; animation: eqBounce 1.2s ease-in-out infinite 0.15s; }
+.eq-bar:nth-child(6) { height: 22px; animation: eqBounce 0.9s ease-in-out infinite 0.25s; }
+.eq-bar:nth-child(7) { height: 16px; animation: eqBounce 1.05s ease-in-out infinite 0.08s; }
+@keyframes eqBounce {
+  0%, 100% { transform: scaleY(0.4); }
+  50%      { transform: scaleY(1); }
+}
+.hero-eq-label {
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.25em;
+  color: var(--gold);
+  text-transform: uppercase;
+  writing-mode: vertical-rl;
+  margin-right: 8px;
+  opacity: 0.5;
+}
+/* ── Scroll indicator ── */
+.hero-scroll {
+  position: absolute;
+  bottom: 3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+  z-index: 5;
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 2.6s;
+}
+.hero-scroll span {
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.3em;
+  color: rgba(255,255,255,0.35);
+  text-transform: uppercase;
+  writing-mode: vertical-rl;
+}
+.scroll-line {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+  animation: scrollPulse 2s ease infinite;
+}
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.3; transform: scaleY(0.5); }
+  50%      { opacity: 1;   transform: scaleY(1); }
+}
+/* ── Floating "Now Streaming" badge ── */
+.hero-streaming {
+  position: absolute;
+  top: clamp(5rem, 12vh, 8rem);
+  right: clamp(2rem, 5vw, 5rem);
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.6rem 1.2rem;
+  background: rgba(26,26,24,0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(196, 162, 101, 0.2);
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 2.4s;
+}
+.streaming-dot {
+  width: 6px;
+  height: 6px;
+  background: #4ADE80;
+  border-radius: 50%;
+  animation: pulseGreen 2s ease infinite;
+}
+@keyframes pulseGreen {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50%      { opacity: 1;   transform: scale(1.3); }
+}
+.streaming-text {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.65);
+}
+.streaming-text strong {
+  color: var(--white);
+  font-weight: 500;
+}
+
+/* Halo removed — hero now image-based */
+
+/* ─── SECTION FOUNDATIONS ─── */
+section {
+  position: relative;
+}
+.section-padding {
+  padding: clamp(4rem, 10vw, 8rem) clamp(1.5rem, 5vw, 6rem);
+}
+.section-tag {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.35em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.section-tag::before {
+  content: '';
+  width: 30px;
+  height: 1px;
+  background: var(--gold);
+}
+.section-heading {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  font-weight: 300;
+  line-height: 1.15;
+  color: var(--charcoal);
+  max-width: 600px;
+}
+.section-heading em {
+  font-style: italic;
+  color: var(--gold-dark);
+}
+
+/* ─── ABOUT / BIO ─── */
+.about {
+  background: var(--white);
+}
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(3rem, 6vw, 6rem);
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.about-image-wrap {
+  position: relative;
+  aspect-ratio: 3/4;
+  overflow: hidden;
+}
+.about-image {
+  width: 100%;
+  height: 100%;
+  background:
+    linear-gradient(135deg, var(--cream) 0%, var(--off-white) 100%);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.about-image-placeholder {
+  font-family: var(--font-display);
+  font-size: clamp(5rem, 10vw, 8rem);
+  font-weight: 300;
+  color: var(--subtle);
+  opacity: 0.3;
+  letter-spacing: 0.05em;
+  line-height: 1;
+  text-align: center;
+}
+.about-image-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40%;
+  background: linear-gradient(to top, rgba(26,26,24,0.3), transparent);
+}
+.about-image-frame {
+  position: absolute;
+  inset: 12px;
+  border: 1px solid rgba(196, 162, 101, 0.25);
+  pointer-events: none;
+}
+.about-text p {
+  font-size: 0.95rem;
+  line-height: 1.85;
+  color: var(--graphite);
+  margin-bottom: 1.5rem;
+  font-weight: 300;
+}
+.about-text p:first-of-type::first-letter {
+  font-family: var(--font-display);
+  font-size: 3.5rem;
+  float: left;
+  line-height: 1;
+  margin-right: 0.5rem;
+  margin-top: 0.15rem;
+  color: var(--gold);
+  font-weight: 400;
+}
+.about-stats {
+  display: flex;
+  gap: 2.5rem;
+  margin-top: 2.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--cream);
+}
+.stat-item {
+  text-align: left;
+}
+.stat-number {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  font-weight: 400;
+  color: var(--gold-dark);
+  line-height: 1;
+}
+.stat-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 0.4rem;
+  font-weight: 400;
+}
+
+/* ─── MUSIC / DISCOGRAPHY ─── */
+.music {
+  background: var(--off-white);
+}
+.music-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.music-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 3.5rem;
+}
+.music-card {
+  background: var(--white);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+.music-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.06);
+}
+.music-card-art {
+  aspect-ratio: 1;
+  position: relative;
+  overflow: hidden;
+}
+.music-card-art-inner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.6s ease;
+}
+.music-card:hover .music-card-art-inner {
+  transform: scale(1.05);
+}
+.art-1 { background: linear-gradient(135deg, #1a1a18, #2a2825, #3d3830); }
+.art-2 { background: linear-gradient(135deg, var(--gold-dark), #8B7340, var(--gold-light)); }
+.art-3 { background: linear-gradient(135deg, #2c2c28, var(--gold-dark), #1a1a18); }
+.art-4 { background: linear-gradient(135deg, #0d0d0c, #1a1a18, #2e2e2a); }
+
+.music-card-art svg {
+  width: 44px;
+  height: 44px;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));
+}
+.music-card:hover .music-card-art svg {
+  opacity: 1;
+  transform: scale(1.1);
+}
+.music-card-info {
+  padding: 1.4rem 1.5rem;
+}
+.music-card-type {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.4rem;
+}
+.music-card-title {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 500;
+  color: var(--charcoal);
+}
+.music-card-year {
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-top: 0.3rem;
+  font-weight: 300;
+}
+
+/* ─── FEATURED EMBED ─── */
+.featured {
+  background: var(--charcoal);
+  color: var(--white);
+}
+.featured-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}
+.featured .section-heading {
+  color: var(--white);
+  margin: 0 auto;
+}
+.featured-embed {
+  margin-top: 3rem;
+  position: relative;
+  aspect-ratio: 16/9;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(196, 162, 101, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.embed-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+}
+.play-btn {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 1.5px solid var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  background: transparent;
+}
+.play-btn:hover {
+  background: var(--gold);
+  transform: scale(1.08);
+}
+.play-btn svg {
+  width: 22px;
+  height: 22px;
+  fill: var(--gold);
+  margin-left: 3px;
+  transition: fill 0.4s ease;
+}
+.play-btn:hover svg {
+  fill: var(--charcoal);
+}
+.embed-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  color: var(--subtle);
+  text-transform: uppercase;
+}
+.featured-platforms {
+  display: flex;
+  justify-content: center;
+  gap: 2.5rem;
+  margin-top: 3rem;
+}
+.platform-link {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  color: var(--subtle);
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+  position: relative;
+}
+.platform-link:hover {
+  color: var(--gold);
+}
+
+/* ─── STREAM EVERYWHERE ─── */
+.streaming {
+  background: var(--white);
+}
+.streaming-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.streaming-intro {
+  font-size: 0.95rem;
+  color: var(--muted);
+  font-weight: 300;
+  max-width: 500px;
+  margin-top: 1.2rem;
+  line-height: 1.7;
+}
+.platform-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 3.5rem;
+}
+.platform-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.3rem 1.5rem;
+  background: var(--off-white);
+  text-decoration: none;
+  color: var(--charcoal);
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid transparent;
+}
+.platform-card:hover {
+  background: var(--white);
+  border-color: var(--gold);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.06);
+}
+.platform-card-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.platform-card-icon svg {
+  width: 20px;
+  height: 20px;
+}
+.pc-spotify .platform-card-icon { background: #1DB954; }
+.pc-spotify .platform-card-icon svg { fill: #fff; }
+.pc-apple .platform-card-icon { background: #FC3C44; }
+.pc-apple .platform-card-icon svg { fill: #fff; }
+.pc-audiomack .platform-card-icon { background: #FFA200; }
+.pc-audiomack .platform-card-icon svg { fill: #fff; }
+.pc-boomplay .platform-card-icon { background: #29d2e4; }
+.pc-boomplay .platform-card-icon svg { fill: #fff; }
+.pc-youtube .platform-card-icon { background: #FF0000; }
+.pc-youtube .platform-card-icon svg { fill: #fff; }
+.pc-ytmusic .platform-card-icon { background: #FF0000; }
+.pc-ytmusic .platform-card-icon svg { fill: #fff; }
+.pc-tidal .platform-card-icon { background: #000; }
+.pc-tidal .platform-card-icon svg { fill: #fff; }
+.pc-deezer .platform-card-icon { background: #A238FF; }
+.pc-deezer .platform-card-icon svg { fill: #fff; }
+.pc-soundcloud .platform-card-icon { background: #FF5500; }
+.pc-soundcloud .platform-card-icon svg { fill: #fff; }
+.pc-amazon .platform-card-icon { background: #25D1DA; }
+.pc-amazon .platform-card-icon svg { fill: #fff; }
+.platform-card-text {
+  display: flex;
+  flex-direction: column;
+}
+.platform-card-name {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--charcoal);
+  line-height: 1.2;
+}
+.platform-card-action {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 0.15rem;
+}
+.platform-card:hover .platform-card-action {
+  color: var(--gold);
+}
+/* Arrow on hover */
+.platform-card::after {
+  content: '→';
+  position: absolute;
+  right: 1.3rem;
+  top: 50%;
+  transform: translateY(-50%) translateX(-8px);
+  font-size: 1rem;
+  color: var(--gold);
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+.platform-card:hover::after {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
+}
+
+/* ─── JOIN THE MOVEMENT ─── */
+.movement {
+  background: var(--charcoal);
+  color: var(--white);
+  overflow: hidden;
+}
+.movement-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: center;
+}
+.movement .section-tag {
+  justify-content: center;
+}
+.movement .section-heading {
+  color: var(--white);
+  margin: 0 auto;
+  max-width: 550px;
+}
+.movement-subtitle {
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.45);
+  font-weight: 300;
+  max-width: 480px;
+  margin: 1.2rem auto 0;
+  line-height: 1.7;
+}
+.social-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.2rem;
+  margin-top: 3.5rem;
+}
+.social-card {
+  position: relative;
+  padding: 2rem 1.8rem;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.07);
+  text-decoration: none;
+  color: var(--white);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  transition: all 0.4s ease;
+  overflow: hidden;
+}
+.social-card:hover {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(196, 162, 101, 0.3);
+  transform: translateY(-4px);
+}
+.social-card-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.06);
+  transition: all 0.4s ease;
+}
+.social-card:hover .social-card-icon {
+  background: var(--gold);
+}
+.social-card-icon svg {
+  width: 22px;
+  height: 22px;
+  fill: rgba(255,255,255,0.65);
+  transition: fill 0.4s ease;
+}
+.social-card:hover .social-card-icon svg {
+  fill: var(--charcoal);
+}
+.social-card-info {
+  text-align: center;
+}
+.social-card-name {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+.social-card-handle {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  color: var(--gold);
+  margin-top: 0.25rem;
+}
+.social-card-stat {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.35);
+  font-weight: 300;
+  margin-top: 0.2rem;
+}
+.social-card-follow {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  padding: 0.5rem 1.2rem;
+  border: 1px solid rgba(255,255,255,0.12);
+  transition: all 0.3s ease;
+  margin-top: 0.3rem;
+}
+.social-card:hover .social-card-follow {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+/* ─── CONTACT / BOOKING ─── */
+.contact {
+  background: var(--off-white);
+}
+.contact-inner {
+  max-width: 900px;
+  margin: 0 auto;
+}
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  margin-top: 3.5rem;
+}
+.contact-info h3 {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 400;
+  margin-bottom: 1.5rem;
+}
+.contact-info p {
+  font-size: 0.85rem;
+  color: var(--muted);
+  line-height: 1.8;
+  font-weight: 300;
+  margin-bottom: 2rem;
+}
+.contact-detail {
+  margin-bottom: 1.5rem;
+}
+.contact-detail-label {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.3rem;
+}
+.contact-detail-value {
+  font-size: 0.9rem;
+  color: var(--charcoal);
+  font-weight: 400;
+}
+.contact-detail-value a {
+  color: var(--charcoal);
+  text-decoration: none;
+  border-bottom: 1px solid var(--cream);
+  transition: border-color 0.3s ease;
+}
+.contact-detail-value a:hover {
+  border-color: var(--gold);
+}
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.form-group label {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.form-group input,
+.form-group textarea,
+.form-group select {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  padding: 0.85rem 0;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--cream);
+  color: var(--charcoal);
+  outline: none;
+  transition: border-color 0.3s ease;
+  font-weight: 300;
+  appearance: none;
+  border-radius: 0;
+}
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  border-color: var(--gold);
+}
+.form-group textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+.form-group select {
+  cursor: pointer;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238A8780' fill='none' stroke-width='1.5'/%3E%3C/svg%3E") no-repeat right center;
+}
+.submit-btn {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  padding: 1rem 2.5rem;
+  background: var(--charcoal);
+  color: var(--white);
+  border: none;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  font-weight: 500;
+  align-self: flex-start;
+  margin-top: 0.5rem;
+}
+.submit-btn:hover {
+  background: var(--gold-dark);
+}
+
+/* ─── FOOTER ─── */
+.footer {
+  background: var(--charcoal);
+  color: rgba(255,255,255,0.4);
+  padding: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 5vw, 6rem);
+}
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+.footer-brand {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  font-weight: 300;
+  color: var(--white);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  line-height: 1;
+}
+.footer-tagline {
+  font-size: 0.75rem;
+  font-weight: 300;
+  color: var(--subtle);
+}
+.footer-socials {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+.social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+.social-icon:hover {
+  border-color: var(--gold);
+  background: var(--gold);
+}
+.social-icon svg {
+  width: 16px;
+  height: 16px;
+  fill: rgba(255,255,255,0.5);
+  transition: fill 0.3s ease;
+}
+.social-icon:hover svg {
+  fill: var(--charcoal);
+}
+.footer-bottom {
+  max-width: 1200px;
+  margin: 3rem auto 0;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.footer-copy {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  color: rgba(255,255,255,0.25);
+}
+
+/* ─── REVEAL ANIMATIONS ─── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* ─── MOBILE NAV OVERLAY ─── */
+.mobile-menu {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(26,26,24,0.97);
+  backdrop-filter: blur(30px);
+  z-index: 999;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+.mobile-menu.open {
+  opacity: 1;
+  visibility: visible;
+}
+.mobile-menu a {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 300;
+  color: var(--white);
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+}
+.mobile-menu a:hover {
+  color: var(--gold);
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 900px) {
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  .mobile-menu { display: flex; }
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .about-image-wrap {
+    aspect-ratio: 4/3;
+    max-height: 400px;
+  }
+  .platform-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .social-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  .featured-platforms {
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+  .about-stats {
+    gap: 1.5rem;
+  }
+  .footer-inner {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .hero-streaming {
+    top: auto;
+    bottom: auto;
+    top: clamp(5rem, 10vh, 7rem);
+    right: 1.5rem;
+    left: 1.5rem;
+    justify-content: center;
+  }
+  .hero-eq {
+    display: none;
+  }
+  .hero-content {
+    padding-bottom: clamp(6rem, 14vh, 8rem);
+  }
+}
+@media (max-width: 520px) {
+  .nav {
+    padding: 1.2rem 1.5rem;
+  }
+  .nav.scrolled {
+    padding: 0.8rem 1.5rem;
+  }
+  .hero-title {
+    font-size: clamp(3rem, 14vw, 5rem);
+  }
+  .music-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  .music-card-info {
+    padding: 1rem;
+  }
+  .music-card-title {
+    font-size: 1.1rem;
+  }
+  .about-stats {
+    flex-wrap: wrap;
+  }
+  .platform-grid {
+    grid-template-columns: 1fr;
+  }
+  .social-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div class="loader" id="loader">
+  <span class="loader-text">ST JSN</span>
+</div>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <a href="#" class="nav-logo">ST JSN</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#music">Music</a></li>
+    <li><a href="#streaming">Stream</a></li>
+    <li><a href="#movement">Community</a></li>
+    <li><a href="#contact" class="nav-cta">Book Now</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about" onclick="closeMenu()">About</a>
+  <a href="#music" onclick="closeMenu()">Music</a>
+  <a href="#streaming" onclick="closeMenu()">Stream</a>
+  <a href="#movement" onclick="closeMenu()">Community</a>
+  <a href="#contact" onclick="closeMenu()">Contact</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <!-- ▸ REPLACE src below with ST JSN's actual photo -->
+  <div class="hero-image">
+    <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=1920&q=80&auto=format&fit=crop" alt="ST JSN performing on stage" loading="eager">
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-overlay-side"></div>
+  <div class="hero-grain"></div>
+  <div class="hero-vignette"></div>
+
+  <!-- Streaming badge -->
+  <div class="hero-streaming">
+    <div class="streaming-dot"></div>
+    <span class="streaming-text">Now Streaming &nbsp;<strong>"Divine Frequency"</strong></span>
+  </div>
+
+  <!-- Content — bottom left -->
+  <div class="hero-content">
+    <p class="hero-eyebrow">Musician &nbsp;·&nbsp; Producer &nbsp;·&nbsp; Visionary</p>
+    <h1 class="hero-title">S<em>T</em>&nbsp;JSN</h1>
+    <p class="hero-subtitle">Crafting sounds that move bodies and souls — from the heart of Nigeria to stages across the world.</p>
+    <div class="hero-actions">
+      <a href="#music" class="hero-btn-primary">
+        <svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg>
+        Listen Now
+      </a>
+      <a href="#contact" class="hero-btn-ghost">Book a Show</a>
+    </div>
+  </div>
+
+  <!-- Equalizer -->
+  <div class="hero-eq">
+    <span class="hero-eq-label">Live</span>
+    <div class="eq-bar"></div>
+    <div class="eq-bar"></div>
+    <div class="eq-bar"></div>
+    <div class="eq-bar"></div>
+    <div class="eq-bar"></div>
+    <div class="eq-bar"></div>
+    <div class="eq-bar"></div>
+  </div>
+
+  <!-- Scroll -->
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about section-padding" id="about">
+  <div class="about-grid">
+    <div class="about-image-wrap reveal">
+      <div class="about-image">
+        <div class="about-image-placeholder">ST</div>
+        <div class="about-image-overlay"></div>
+        <div class="about-image-frame"></div>
+      </div>
+    </div>
+    <div class="about-text">
+      <div class="section-tag reveal">Biography</div>
+      <h2 class="section-heading reveal reveal-delay-1">The Art Behind <em>the Sound</em></h2>
+      <br>
+      <p class="reveal reveal-delay-2">Born from the vibrant pulse of Nigeria's music scene, ST JSN emerged as a creative force bridging the worlds of artistry and production. With a sound that draws from Afrobeats, Afro-soul, and contemporary Nigerian pop, every composition is a testament to cultural depth and sonic innovation.</p>
+      <p class="reveal reveal-delay-3">As both a performing musician and studio architect, ST JSN has collaborated across Lagos studios and international stages, sculpting beats that move bodies and melodies that linger in the mind. The mission is singular: to push boundaries, redefine what Nigerian music sounds like, and leave an indelible mark on the global soundscape.</p>
+      <div class="about-stats reveal reveal-delay-4">
+        <div class="stat-item">
+          <div class="stat-number">50+</div>
+          <div class="stat-label">Tracks Released</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">2M+</div>
+          <div class="stat-label">Total Streams</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">30+</div>
+          <div class="stat-label">Shows Performed</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MUSIC -->
+<section class="music section-padding" id="music">
+  <div class="music-inner">
+    <div class="section-tag reveal">Discography</div>
+    <h2 class="section-heading reveal reveal-delay-1">Selected <em>Works</em></h2>
+    <div class="music-grid">
+      <div class="music-card reveal reveal-delay-1">
+        <div class="music-card-art">
+          <div class="music-card-art-inner art-1">
+            <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21" fill="#C4A265"/></svg>
+          </div>
+        </div>
+        <div class="music-card-info">
+          <div class="music-card-type">Single</div>
+          <div class="music-card-title">Divine Frequency</div>
+          <div class="music-card-year">2025</div>
+        </div>
+      </div>
+      <div class="music-card reveal reveal-delay-2">
+        <div class="music-card-art">
+          <div class="music-card-art-inner art-2">
+            <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21" fill="#1A1A18"/></svg>
+          </div>
+        </div>
+        <div class="music-card-info">
+          <div class="music-card-type">EP</div>
+          <div class="music-card-title">Golden Hour</div>
+          <div class="music-card-year">2024</div>
+        </div>
+      </div>
+      <div class="music-card reveal reveal-delay-3">
+        <div class="music-card-art">
+          <div class="music-card-art-inner art-3">
+            <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21" fill="#C4A265"/></svg>
+          </div>
+        </div>
+        <div class="music-card-info">
+          <div class="music-card-type">Single</div>
+          <div class="music-card-title">Night Psalm</div>
+          <div class="music-card-year">2024</div>
+        </div>
+      </div>
+      <div class="music-card reveal reveal-delay-4">
+        <div class="music-card-art">
+          <div class="music-card-art-inner art-4">
+            <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21" fill="#C4A265"/></svg>
+          </div>
+        </div>
+        <div class="music-card-info">
+          <div class="music-card-type">Album</div>
+          <div class="music-card-title">Sanctified</div>
+          <div class="music-card-year">2023</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED -->
+<section class="featured section-padding" id="featured">
+  <div class="featured-inner">
+    <div class="section-tag reveal" style="justify-content: center;">Now Playing</div>
+    <h2 class="section-heading reveal reveal-delay-1">Latest <em>Release</em></h2>
+    <div class="featured-embed reveal reveal-delay-2">
+      <div class="embed-placeholder">
+        <button class="play-btn" aria-label="Play">
+          <svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg>
+        </button>
+        <span class="embed-label">Watch "Divine Frequency" Official Video</span>
+      </div>
+    </div>
+    <div class="featured-platforms reveal reveal-delay-3">
+      <a href="#" class="platform-link">Spotify</a>
+      <a href="#" class="platform-link">Apple Music</a>
+      <a href="#" class="platform-link">Audiomack</a>
+      <a href="#" class="platform-link">Boomplay</a>
+      <a href="#" class="platform-link">YouTube</a>
+    </div>
+  </div>
+</section>
+
+<!-- STREAM EVERYWHERE -->
+<section class="streaming section-padding" id="streaming">
+  <div class="streaming-inner">
+    <div class="section-tag reveal">Stream Everywhere</div>
+    <h2 class="section-heading reveal reveal-delay-1">One Sound, <em>Every Platform</em></h2>
+    <p class="streaming-intro reveal reveal-delay-2">Find ST JSN wherever you listen. Tap your platform and press play.</p>
+    <div class="platform-grid">
+
+      <a href="#" class="platform-card pc-spotify reveal reveal-delay-1" target="_blank">
+        <div class="platform-card-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+        </div>
+        <div class="platform-card-text">
+          <span class="platform-card-name">Spotify</span>
+          <span class="platform-card-action">Listen now</span>
+        </div>
+      </a>
+
+      <a href="#" class="platform-card pc-apple reveal reveal-delay-1" target="_blank">
+        <div class="platform-card-icon">
+          <svg viewBox="0 0 24 24"><path d="M23.994 6.124a9.23 9.23 0 00-.24-2.19c-.317-1.31-1.062-2.31-2.18-3.043A5.022 5.022 0 0019.7.204C18.82.044 17.94 0 17.06 0H6.94C6.06 0 5.18.044 4.3.204A5.022 5.022 0 002.426.89C1.308 1.624.563 2.624.246 3.934a9.23 9.23 0 00-.24 2.19C0 6.584 0 7.044 0 7.504v8.992c0 .46 0 .92.006 1.38a9.23 9.23 0 00.24 2.19c.317 1.31 1.062 2.31 2.18 3.043a5.022 5.022 0 001.874.686c.88.16 1.76.204 2.64.204h10.12c.88 0 1.76-.044 2.64-.204a5.022 5.022 0 001.874-.686c1.118-.734 1.863-1.734 2.18-3.043a9.23 9.23 0 00.24-2.19c.006-.46.006-.92.006-1.38V7.504c0-.46 0-.92-.006-1.38zM17.73 12.096l-5.274 3.04c-.37.214-.756.322-1.148.322-.264 0-.53-.052-.8-.162a1.634 1.634 0 01-.986-1.57V7.296c0-.7.38-1.236.986-1.57.606-.334 1.24-.306 1.948.16l5.274 3.04c.63.362.948.854.948 1.486 0 .632-.318 1.322-.948 1.684z"/></svg>
+        </div>
+        <div class="platform-card-text">
+          <span class="platform-card-name">Apple Music</span>
+          <span class="platform-card-action">Listen now</span>
+        </div>
+      </a>
+
+      <a href="#" class="platform-card pc-audiomack reveal reveal-delay-2" target="_blank">
+        <div class="platform-card-icon">
+          <svg viewBox="0 0 24 24"><path d="M4.47 13.03a1.5 1.5 0 11-2.121 0 1.5 1.5 0 012.121 0zm4.53-.53a1.5 1.5 0 100 3 1.5 1.5 0 000-3zm4.5-3a1.5 1.5 0 100 3 1.5 1.5 0 000-3zm5.03.53a1.5 1.5 0 11-2.121 0 1.5 1.5 0 012.121 0zM3.47 8.03a1.5 1.5 0 11-2.121 0 1.5 1.5 0 012.121 0zm5.03-.53a1.5 1.5 0 100 3 1.5 1.5 0 000-3zm5.5-3a1.5 1.5 0 100 3 1.5 1.5 0 000-3zm5.03.53a1.5 1.5 0 11-2.121 0 1.5 1.5 0 012.121 0z"/></svg>
+        </div>
+        <div class="platform-card-text">
+          <span class="platform-card-name">Audiomack</span>
+          <span class="platform-card-action">Listen now</span>
+        </div>
+      </a>
+
+      <a href="#" class="platform-card pc-boomplay reveal reveal-delay-2" target="_blank">
+        <div class="platform-card-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="#fff" stroke-width="2"/><polygon points="10,8 16,12 10,16" fill="#fff"/></svg>
+        </div>
+        <div class="platform-card-text">
+          <span class="platform-card-name">Boomplay</span>
+          <span class="platform-card-action">Listen now</span>
+        </div>
+      </a>
+
+      <a href="#" class="platform-card pc-youtube reveal reveal-delay-3" target="_blank">
+        <div class="platform-card-icon">
+          <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        </div>
+        <div class="platform-card-text">
+          <span class="platform-card-name">YouTube</span>
+          <span class="platform-card-action">Watch now</span>
+        </div>
+      </a>
+
+      <a href="#" class="platform-card pc-ytmusic reveal reveal-delay-3" target="_blank">
+        <div class="platform-card-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 0C5.376 0 0 5.376 0 12s5.376 12 12 12 12-5.376 12-12S18.624 0 12 0zm0 19.104c-3.924 0-7.104-3.18-7.104-7.104S8.076 4.896 12 4.896s7.104 3.18 7.104 7.104-3.18 7.104-7.104 7.104zm0-13.332c-3.432 0-6.228 2.796-6.228 6.228S8.568 18.228 12 18.228 18.228 15.432 18.228 12 15.432 5.772 12 5.772zM9.684 15.54V8.46L15.816 12l-6.132 3.54z"/></svg>
+        </div>
+        <div class="platform-card-text">
+          <span class="platform-card-name">YouTube Music</span>
+          <span class="platform-card-action">Listen now</span>
+        </div>
+      </a>
+
+      <a href="#" class="platform-card pc-tidal reveal reveal-delay-4" target="_blank">
+        <div class="platform-card-icon">
+          <svg viewBox="0 0 24 24"><path d="M12.012 3.992L8.008 7.996 12.012 12l4.004-4.004zM4.004 7.996L0 12l4.004 4.004L8.008 12zm15.992 0L15.992 12l4.004 4.004L24 12zm-7.984 7.984l-4.004 4.004 4.004 4.004 4.004-4.004z"/></svg>
+        </div>
+        <div class="platform-card-text">
+          <span class="platform-card-name">Tidal</span>
+          <span class="platform-card-action">Listen now</span>
+        </div>
+      </a>
+
+      <a href="#" class="platform-card pc-soundcloud reveal reveal-delay-4" target="_blank">
+        <div class="platform-card-icon">
+          <svg viewBox="0 0 24 24"><path d="M1.175 12.225c-.051 0-.094.046-.101.1l-.233 2.154.233 2.105c.007.058.05.098.101.098.05 0 .09-.04.099-.098l.255-2.105-.27-2.154c-.009-.06-.05-.1-.1-.1m-.899.828c-.06 0-.091.038-.1.1L0 14.479l.176 1.32c.009.06.04.098.1.098.058 0 .091-.038.1-.098l.21-1.32-.21-1.326c-.009-.06-.04-.1-.1-.1m1.818-1.154c-.07 0-.12.06-.12.12l-.204 2.46.204 2.388c0 .06.05.12.12.12.068 0 .12-.06.12-.12l.234-2.388-.234-2.46c0-.06-.05-.12-.12-.12m.779-.18c-.08 0-.131.06-.131.14l-.19 2.64.19 2.418c.009.08.06.131.131.131.08 0 .131-.05.14-.131l.209-2.418-.21-2.64c-.009-.08-.06-.14-.14-.14m.762-.11c-.089 0-.15.07-.15.15l-.18 2.75.18 2.418c0 .08.06.149.15.149.09 0 .15-.07.15-.15l.2-2.417-.2-2.75c0-.08-.06-.15-.15-.15m.77-.07c-.1 0-.16.08-.17.16l-.16 2.82.16 2.417c.01.09.07.16.17.16.09 0 .16-.07.16-.16l.18-2.417-.18-2.82c-.01-.09-.07-.16-.16-.16m.97-.14c-.1 0-.18.09-.18.18l-.15 2.96.15 2.398c0 .1.08.18.18.18.1 0 .18-.08.18-.18l.17-2.398-.17-2.96c0-.09-.08-.18-.18-.18m.789.08c-.11 0-.19.09-.19.19l-.14 2.88.14 2.368c0 .1.08.19.19.19.1 0 .19-.09.19-.19l.15-2.368-.15-2.88c0-.1-.09-.19-.19-.19m.79-.04c-.12 0-.2.1-.21.2l-.12 2.92.12 2.348c.01.11.09.2.21.2.11 0 .19-.09.2-.2l.13-2.348-.13-2.92c-.01-.1-.09-.2-.2-.2m.79-.03c-.12 0-.21.1-.21.21l-.11 2.95.11 2.328c0 .12.09.21.21.21.12 0 .21-.09.22-.21l.12-2.328-.12-2.95c-.01-.11-.1-.21-.22-.21m.79-.02c-.13 0-.22.1-.22.22l-.1 2.97.1 2.308c0 .12.09.22.22.22.12 0 .22-.1.23-.22l.11-2.308-.11-2.97c-.01-.12-.1-.22-.23-.22m2.7-.17c-.189 0-.339.16-.349.33l-.07 3.14.07 2.27c.01.18.16.33.35.33.18 0 .33-.15.34-.33l.08-2.27-.08-3.14c-.01-.17-.16-.33-.34-.33m.79.13c-.2 0-.35.16-.36.35l-.06 3.01.06 2.24c.01.19.16.35.36.35.19 0 .35-.16.36-.35l.07-2.24-.07-3.01c-.01-.19-.16-.35-.36-.35m4.04-1.81c-.23 0-.42.07-.6.18a4.83 4.83 0 00-4.73-3.82c-.49 0-.98.08-1.43.23-.18.06-.23.13-.23.26v7.6c0 .13.1.24.23.26h6.76c1.32 0 2.39-1.07 2.39-2.39 0-1.32-1.07-2.39-2.39-2.39"/></svg>
+        </div>
+        <div class="platform-card-text">
+          <span class="platform-card-name">SoundCloud</span>
+          <span class="platform-card-action">Listen now</span>
+        </div>
+      </a>
+
+      <a href="#" class="platform-card pc-deezer reveal reveal-delay-4" target="_blank">
+        <div class="platform-card-icon">
+          <svg viewBox="0 0 24 24"><path d="M18.81 4.16v3.03H24V4.16h-5.19zM6.27 8.38v3.027h5.189V8.38H6.27zm12.54 0v3.027H24V8.38h-5.19zM6.27 12.594v3.027h5.189v-3.027H6.27zm6.27 0v3.027h5.19v-3.027h-5.19zm6.27 0v3.027H24v-3.027h-5.19zM0 16.81v3.029h5.19V16.81H0zm6.27 0v3.029h5.189V16.81H6.27zm6.27 0v3.029h5.19V16.81h-5.19zm6.27 0v3.029H24V16.81h-5.19z"/></svg>
+        </div>
+        <div class="platform-card-text">
+          <span class="platform-card-name">Deezer</span>
+          <span class="platform-card-action">Listen now</span>
+        </div>
+      </a>
+
+      <a href="#" class="platform-card pc-amazon reveal reveal-delay-4" target="_blank">
+        <div class="platform-card-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 0C5.376 0 0 5.376 0 12s5.376 12 12 12 12-5.376 12-12S18.624 0 12 0zm0 3.6c4.638 0 8.4 3.762 8.4 8.4 0 4.638-3.762 8.4-8.4 8.4-4.638 0-8.4-3.762-8.4-8.4 0-4.638 3.762-8.4 8.4-8.4zM9.6 8.4v7.2L16.8 12 9.6 8.4z"/></svg>
+        </div>
+        <div class="platform-card-text">
+          <span class="platform-card-name">Amazon Music</span>
+          <span class="platform-card-action">Listen now</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- JOIN THE MOVEMENT -->
+<section class="movement section-padding" id="movement">
+  <div class="movement-inner">
+    <div class="section-tag reveal">Join the Movement</div>
+    <h2 class="section-heading reveal reveal-delay-1">Be Part of <em>the Story</em></h2>
+    <p class="movement-subtitle reveal reveal-delay-2">Stay connected. Get first access to new drops, behind-the-scenes content, and exclusive updates straight from the source.</p>
+    <div class="social-grid">
+
+      <a href="#" class="social-card reveal reveal-delay-1" target="_blank">
+        <div class="social-card-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        </div>
+        <div class="social-card-info">
+          <div class="social-card-name">Instagram</div>
+          <div class="social-card-handle">@stjsn</div>
+        </div>
+        <div class="social-card-follow">Follow</div>
+      </a>
+
+      <a href="#" class="social-card reveal reveal-delay-2" target="_blank">
+        <div class="social-card-icon">
+          <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </div>
+        <div class="social-card-info">
+          <div class="social-card-name">X (Twitter)</div>
+          <div class="social-card-handle">@stjsn</div>
+        </div>
+        <div class="social-card-follow">Follow</div>
+      </a>
+
+      <a href="#" class="social-card reveal reveal-delay-3" target="_blank">
+        <div class="social-card-icon">
+          <svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+        </div>
+        <div class="social-card-info">
+          <div class="social-card-name">TikTok</div>
+          <div class="social-card-handle">@stjsn</div>
+        </div>
+        <div class="social-card-follow">Follow</div>
+      </a>
+
+      <a href="#" class="social-card reveal reveal-delay-3" target="_blank">
+        <div class="social-card-icon">
+          <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        </div>
+        <div class="social-card-info">
+          <div class="social-card-name">YouTube</div>
+          <div class="social-card-handle">@stjsn</div>
+        </div>
+        <div class="social-card-follow">Subscribe</div>
+      </a>
+
+      <a href="#" class="social-card reveal reveal-delay-4" target="_blank">
+        <div class="social-card-icon">
+          <svg viewBox="0 0 24 24"><path d="M24 11.779c0-1.459-1.192-2.645-2.657-2.645-.715 0-1.363.286-1.84.746-1.81-1.191-4.259-1.949-6.971-2.046l1.483-4.669 4.016.941-.006.058c0 1.193.975 2.163 2.174 2.163 1.198 0 2.172-.97 2.172-2.163s-.975-2.164-2.172-2.164c-.92 0-1.704.574-2.021 1.379l-4.329-1.015c-.189-.046-.381.063-.44.249l-1.654 5.207c-2.838.034-5.409.798-7.3 2.025-.474-.438-1.103-.712-1.799-.712C1.192 9.134 0 10.32 0 11.779c0 .825.379 1.561.98 2.045-.061.334-.093.673-.093 1.015C.887 18.614 5.96 21.6 12.17 21.6c6.21 0 11.283-2.986 11.283-6.76 0-.353-.035-.702-.1-1.046.586-.487.947-1.212.947-2.015zm-18.327 2.38c0-.821.672-1.489 1.498-1.489.827 0 1.498.668 1.498 1.489s-.67 1.489-1.498 1.489c-.826 0-1.498-.668-1.498-1.489zm8.787 4.714c-1.083 1.079-3.151 1.165-4.29 1.165-1.14 0-3.21-.093-4.29-1.165a.342.342 0 010-.486.348.348 0 01.489 0c.678.678 2.132.936 3.8.936 1.67 0 3.126-.26 3.8-.936a.348.348 0 01.489 0 .346.346 0 01.002.486zm-.344-3.225c-.826 0-1.498-.668-1.498-1.489s.672-1.489 1.498-1.489c.826 0 1.498.668 1.498 1.489s-.672 1.489-1.498 1.489z"/></svg>
+        </div>
+        <div class="social-card-info">
+          <div class="social-card-name">Reddit</div>
+          <div class="social-card-handle">r/stjsn</div>
+        </div>
+        <div class="social-card-follow">Join</div>
+      </a>
+
+      <a href="#" class="social-card reveal reveal-delay-4" target="_blank">
+        <div class="social-card-icon">
+          <svg viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.617-1.25.077.077 0 00-.079-.037A19.736 19.736 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.107 13.107 0 01-1.872-.892.077.077 0 01-.008-.128 10.2 10.2 0 00.372-.292.074.074 0 01.077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.01c.12.098.246.198.373.292a.077.077 0 01-.006.127 12.299 12.299 0 01-1.873.892.077.077 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.839 19.839 0 006.002-3.03.077.077 0 00.032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 00-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.095 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.095 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+        </div>
+        <div class="social-card-info">
+          <div class="social-card-name">Discord</div>
+          <div class="social-card-handle">ST JSN Community</div>
+        </div>
+        <div class="social-card-follow">Join Server</div>
+      </a>
+
+      <a href="#" class="social-card reveal reveal-delay-4" target="_blank">
+        <div class="social-card-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.295-.6.295l.213-3.054 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.64-.203-.658-.64.135-.954l11.566-4.458c.538-.196 1.006.128.832.94z"/></svg>
+        </div>
+        <div class="social-card-info">
+          <div class="social-card-name">Telegram</div>
+          <div class="social-card-handle">@stjsnofficial</div>
+        </div>
+        <div class="social-card-follow">Join Channel</div>
+      </a>
+
+      <a href="#" class="social-card reveal reveal-delay-4" target="_blank">
+        <div class="social-card-icon">
+          <svg viewBox="0 0 24 24"><path d="M12.04 0C5.406 0 .04 5.29.04 11.822c0 2.082.549 4.012 1.513 5.706L.057 23.77l6.406-1.459a11.881 11.881 0 005.577 1.383c6.634 0 12-5.29 12-11.822S18.674 0 12.04 0zm0 21.654a9.84 9.84 0 01-5.014-1.375l-.36-.213-3.726.849.886-3.594-.237-.377a9.673 9.673 0 01-1.503-5.122c0-5.402 4.434-9.8 9.954-9.8s9.954 4.398 9.954 9.8-4.434 9.832-9.954 9.832zm5.46-7.338c-.299-.15-1.767-.872-2.04-.971-.274-.1-.473-.149-.672.149-.198.298-.77.971-.943 1.17-.174.199-.348.224-.647.075-.299-.15-1.263-.465-2.403-1.485-.888-.792-1.488-1.77-1.662-2.07-.174-.298-.019-.46.13-.608.134-.133.299-.348.448-.522.15-.174.2-.299.3-.497.099-.199.05-.373-.025-.522-.075-.15-.672-1.621-.922-2.22-.242-.579-.489-.501-.672-.51-.174-.008-.373-.01-.572-.01-.198 0-.522.074-.796.373-.274.298-1.044 1.02-1.044 2.487 0 1.468 1.069 2.886 1.219 3.085.149.199 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.174-1.413-.075-.124-.274-.199-.573-.348z"/></svg>
+        </div>
+        <div class="social-card-info">
+          <div class="social-card-name">WhatsApp</div>
+          <div class="social-card-handle">ST JSN Updates</div>
+        </div>
+        <div class="social-card-follow">Join Channel</div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact section-padding" id="contact">
+  <div class="contact-inner">
+    <div class="section-tag reveal">Connect</div>
+    <h2 class="section-heading reveal reveal-delay-1">Let's Create <em>Together</em></h2>
+    <div class="contact-grid">
+      <div class="contact-info reveal reveal-delay-2">
+        <h3>Bookings &amp; Enquiries</h3>
+        <p>For show bookings, studio sessions, production work, collaborations, or press — reach out. Every great record starts with a conversation.</p>
+        <div class="contact-detail">
+          <div class="contact-detail-label">Management</div>
+          <div class="contact-detail-value"><a href="mailto:mgmt@stjsn.com">mgmt@stjsn.com</a></div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-detail-label">Bookings</div>
+          <div class="contact-detail-value"><a href="mailto:bookings@stjsn.com">bookings@stjsn.com</a></div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-detail-label">Press</div>
+          <div class="contact-detail-value"><a href="mailto:press@stjsn.com">press@stjsn.com</a></div>
+        </div>
+      </div>
+      <div class="contact-form reveal reveal-delay-3">
+        <div class="form-group">
+          <label for="name">Your Name</label>
+          <input type="text" id="name" name="name" placeholder="Full name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="you@example.com" required>
+        </div>
+        <div class="form-group">
+          <label for="subject">Enquiry Type</label>
+          <select id="subject" name="subject">
+            <option value="" disabled selected>Select one</option>
+            <option value="booking">Show Booking</option>
+            <option value="production">Production / Collaboration</option>
+            <option value="press">Press / Interview</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="Tell me about your project or event..." rows="4"></textarea>
+        </div>
+        <button type="button" class="submit-btn">Send Message</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">ST JSN</div>
+      <div class="footer-tagline">Musician &nbsp;·&nbsp; Producer &nbsp;·&nbsp; Visionary</div>
+    </div>
+    <div class="footer-socials">
+      <a href="#" class="social-icon" aria-label="Instagram">
+        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+      </a>
+      <a href="#" class="social-icon" aria-label="Twitter / X">
+        <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      </a>
+      <a href="#" class="social-icon" aria-label="YouTube">
+        <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      </a>
+      <a href="#" class="social-icon" aria-label="TikTok">
+        <svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+      </a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">&copy; 2026 ST JSN. All rights reserved.</span>
+    <span class="footer-copy">Crafted with intention</span>
+  </div>
+</footer>
+
+<script>
+// Loader
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.getElementById('loader').classList.add('done');
+  }, 1600);
+});
+
+// Nav scroll behavior
+const nav = document.getElementById('nav');
+const heroImage = document.querySelector('.hero-image img');
+let lastScroll = 0;
+window.addEventListener('scroll', () => {
+  const currentScroll = window.scrollY;
+  if (currentScroll > 60) {
+    nav.classList.add('scrolled');
+  } else {
+    nav.classList.remove('scrolled');
+  }
+  // Parallax on hero image
+  if (currentScroll < window.innerHeight) {
+    heroImage.style.transform = 'translateY(' + (currentScroll * 0.3) + 'px) scale(1.05)';
+  }
+  lastScroll = currentScroll;
+}, { passive: true });
+
+// Mobile menu
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  mobileMenu.classList.toggle('open');
+  document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+});
+
+function closeMenu() {
+  hamburger.classList.remove('active');
+  mobileMenu.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// Scroll reveal
+const reveals = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, {
+  threshold: 0.15,
+  rootMargin: '0px 0px -40px 0px'
+});
+
+reveals.forEach(el => revealObserver.observe(el));
+
+// Smooth scroll for nav links
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+  link.addEventListener('click', (e) => {
+    const target = document.querySelector(link.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+
+// Form submit feedback
+document.querySelector('.submit-btn')?.addEventListener('click', function() {
+  const btn = this;
+  const name = document.getElementById('name').value;
+  const email = document.getElementById('email').value;
+  if (!name || !email) {
+    btn.textContent = 'Please fill required fields';
+    btn.style.background = '#8B7340';
+    setTimeout(() => {
+      btn.textContent = 'Send Message';
+      btn.style.background = '';
+    }, 2000);
+    return;
+  }
+  btn.textContent = 'Message Sent ✓';
+  btn.style.background = 'var(--gold-dark)';
+  setTimeout(() => {
+    btn.textContent = 'Send Message';
+    btn.style.background = '';
+    document.getElementById('name').value = '';
+    document.getElementById('email').value = '';
+    document.getElementById('message').value = '';
+  }, 3000);
+});
+</script>
+</body>
+</html>
